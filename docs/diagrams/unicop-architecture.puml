@@ -1,0 +1,43 @@
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(operator, "Operator / Platform Engineer", "Declares intent and approves changes")
+
+System_Boundary(identity, "Identity Plane") {
+Container(keycloak, "Keycloak", "OIDC / SAML", "Authentication and role mapping")
+}
+
+System_Boundary(unicop, "UNICOP Control Plane") {
+ContainerDb(netbox, "NetBox", "Django + PostgreSQL", "Relational SSOT and desired state")
+Container(kafka, "Kafka", "Event Log", "Event spine and audit history")
+Container(awx, "AWX", "Ansible", "Bounded reconciliation engine")
+ContainerDb(vault, "Vault", "Secrets & PKI", "Credentials and certificates")
+Container(dns, "DNS Plane", "Pluggable", "Authoritative DNS")
+Container(git, "Git", "Version Control", "Playbooks and policies")
+Container(obs, "Observability", "OpenTelemetry", "Metrics and traces")
+}
+
+System_Boundary(targets, "Managed Infrastructure") {
+System_Ext(cloud, "Cloud Providers", "AWS / Azure / GCP")
+System_Ext(onprem, "On-Prem", "DC and Network")
+}
+
+Rel(operator, keycloak, "Authenticates")
+Rel(keycloak, netbox, "Authorizes")
+Rel(keycloak, awx, "Authorizes")
+Rel(keycloak, vault, "Authorizes")
+
+Rel(netbox, kafka, "Emits events")
+Rel(kafka, awx, "Dispatches reconciliation")
+
+Rel(awx, git, "Loads mechanics")
+Rel(awx, vault, "Requests secrets")
+Rel(awx, dns, "Manages records")
+Rel(awx, cloud, "Reconciles")
+Rel(awx, onprem, "Reconciles")
+
+Rel(obs, netbox, "Collects telemetry")
+Rel(obs, awx, "Collects telemetry")
+Rel(obs, vault, "Collects telemetry")
+Rel(obs, kafka, "Collects telemetry")
+Rel(obs, dns, "Collects telemetry")

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package unicop.federation.v1;
+
+// ScopeType enumerates canonical scope categories.
+// New scope types require updating:
+// - docs/architecture/federation/scope-model.md
+// - router extraction rules in routing-contract.md
+enum ScopeType {
+  SCOPE_TYPE_UNSPECIFIED = 0;
+  SCOPE_TYPE_ACCOUNT = 1;
+  SCOPE_TYPE_TENANT = 2;
+  SCOPE_TYPE_REGION = 3;
+}
+
+// ScopeKey is the canonical routing key.
+// Canonical string form: "<scope_type>:<scope_id>" (see scope-model.md).
+message ScopeKey {
+  ScopeType type = 1;
+
+  // Opaque identifier string. Validation rules are defined by API URI encoding.
+  // Example: "123456789012" for account, "acme-prod" for tenant, "us-east-1" for region.
+  string id = 2;
+}
+
+// ScopeKeyString is the canonical string representation used in logs and simple APIs.
+// It MUST match "<scope_type>:<scope_id>" for v1.
+// Example: "account:123456789012"
+message ScopeKeyString {
+  string value = 1;
+}

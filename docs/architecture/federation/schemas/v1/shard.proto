@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package unicop.federation.v1;
+
+// ShardID is a stable identifier for a shard.
+// It is opaque to federation logic other than equality comparison.
+message ShardID {
+  string value = 1;
+}
+
+// ShardStatus is logical health/availability metadata.
+// Exact health computation is out of scope for unicop-core.
+enum ShardStatus {
+  SHARD_STATUS_UNSPECIFIED = 0;
+  SHARD_STATUS_ACTIVE = 1;
+  SHARD_STATUS_DEGRADED = 2;
+  SHARD_STATUS_DRAINING = 3;
+  SHARD_STATUS_OFFLINE = 4;
+}
+
+// ShardMetadata contains logical metadata about a shard.
+// It MUST NOT be treated as an authority for scope ownership (GD owns that).
+message ShardMetadata {
+  ShardID shard_id = 1;
+
+  // Logical region label (may differ from cloud provider region strings).
+  string logical_region = 2;
+
+  // Shard software version (string form; semantics defined outside unicop-core).
+  string version = 3;
+
+  ShardStatus status = 4;
+
+  // Free-form labels for governance/selection; semantics defined outside unicop-core.
+  map<string, string> labels = 5;
+}

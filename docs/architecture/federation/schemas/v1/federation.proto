@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package unicop.federation.v1;
+
+// MigrationState is the canonical scope migration state machine.
+// Order and enforcement semantics are defined in migration-state-machine.md.
+enum MigrationState {
+  MIGRATION_STATE_UNSPECIFIED = 0;
+  MIGRATION_STATE_STABLE = 1;
+  MIGRATION_STATE_QUIESCING = 2;
+  MIGRATION_STATE_LOCKED = 3;
+  MIGRATION_STATE_PIVOTING = 4;
+}
+
+// ScopeMapping is the authoritative record that determines where a scope routes.
+message ScopeMapping {
+  // Canonical string form "<scope_type>:<scope_id>".
+  // This is redundant with ScopeKey but used as a stable key for directory indexing.
+  string scope_key = 1;
+
+  // Owner shard for this scope.
+  ShardID shard_id = 2;
+
+  // Current migration state.
+  MigrationState state = 3;
+
+  // Monotonic revision used for cache invalidation and auditing.
+  // Semantics: increased on every authoritative update to this mapping.
+  uint64 revision = 4;
+}

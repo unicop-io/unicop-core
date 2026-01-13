@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package unicop.federation.v1;
+
+import "unicop/federation/v1/scope.proto";
+import "unicop/federation/v1/shard.proto";
+import "unicop/federation/v1/federation.proto";
+
+// GlobalDirectory is the canonical service contract for scope → shard authority.
+//
+// NOTE: Authorization, authentication, and transport security are out of scope for unicop-core.
+// NOTE: Backing datastore and replication are out of scope for unicop-core.
+service GlobalDirectory {
+  // ResolveScope returns the authoritative ScopeMapping for a ScopeKeyString.
+  // Router uses this for routing and migration enforcement.
+  rpc ResolveScope(ResolveScopeRequest) returns (ResolveScopeResponse);
+
+  // GetShard returns ShardMetadata by shard_id.
+  rpc GetShard(GetShardRequest) returns (GetShardResponse);
+
+  // ListShards returns all known shards (metadata).
+  rpc ListShards(ListShardsRequest) returns (ListShardsResponse);
+
+  // PutScopeMapping creates or replaces a scope mapping (authorized operation).
+  rpc PutScopeMapping(PutScopeMappingRequest) returns (PutScopeMappingResponse);
+
+  // TransitionScopeState transitions migration state for a scope (authorized operation).
+  // Transitions MUST follow the allowed transition chain defined in migration-state-machine.md.
+  rpc TransitionScopeState(TransitionScopeStateRequest) returns (TransitionScopeStateResponse);
+}
+
+message ResolveScopeRequest {
+  // Canonical string: "<scope_type>:<scope_id>".
+  ScopeKeyString scope_key = 1;
+}
+
+message ResolveScopeResponse {
+  // Present if mapping exists.
+  ScopeMapping mapping = 1;
+}
+
+message GetShardRequest {
+  ShardID shard_id = 1;
+}
+
+message GetShardResponse {
+  ShardMetadata shard = 1;
+}
+
+message ListShardsRequest {
+  // Optional filter: only return shards with these statuses.
+  repeated ShardStatus status = 1;
+}
+
+message ListShardsResponse {
+  repeated ShardMetadata shards = 1;
+}
+
+message PutScopeMappingRequest {
+  // Authoritative mapping to store.
+  ScopeMapping mapping = 1;
+}
+
+message PutScopeMappingResponse {
+  // Echo the stored mapping.
+  ScopeMapping mapping = 1;
+}
+
+message TransitionScopeStateRequest {
+  ScopeKeyString scope_key = 1;
+
+  // Desired target state.
+  MigrationState target_state = 2;
+
+  // Optional expected revision for optimistic concurrency (if provided).
+  // If present, GD MUST reject the transition if current revision != expected_revision.
+  uint64 expected_revision = 3;
+}
+
+message TransitionScopeStateResponse {
+  ScopeMapping mapping = 1;
+}

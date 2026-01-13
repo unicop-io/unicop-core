@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package unicop.federation.v1;
+
+import "unicop/federation/v1/scope.proto";
+import "unicop/federation/v1/federation.proto";
+import "unicop/federation/v1/shard.proto";
+
+// RouterResolution is the canonical output of a routing decision.
+message RouterResolution {
+  ScopeKeyString scope_key = 1;
+  ShardID shard_id = 2;
+  MigrationState migration_state = 3;
+
+  // Mapping revision used for cache validation and audit correlation.
+  uint64 mapping_revision = 4;
+}
+
+// RouterRequestContext is a canonical normalized view of a routable request.
+// It is not a network API; it defines the abstract inputs used by routing logic.
+message RouterRequestContext {
+  // HTTP method (e.g. GET, POST).
+  string method = 1;
+
+  // Full URI path (e.g. "/api/aws/accounts/123456789012/vpcs").
+  string path = 2;
+}
+
+// RouterDecision is a canonical abstract decision outcome.
+enum RouterDecision {
+  ROUTER_DECISION_UNSPECIFIED = 0;
+
+  // Proceed to resolve and forward request.
+  ROUTER_DECISION_ROUTE = 1;
+
+  // Reject request due to invalid scope extraction or malformed URI.
+  ROUTER_DECISION_REJECT_BAD_REQUEST = 2;
+
+  // Reject due to missing scope mapping.
+  ROUTER_DECISION_REJECT_NOT_FOUND = 3;
+
+  // Reject due to migration lock for mutating methods.
+  ROUTER_DECISION_REJECT_LOCKED = 4;
+
+  // Reject due to GD unavailable or pivoting state.
+  ROUTER_DECISION_REJECT_UNAVAILABLE = 5;
+}
+
+// RouterRejection describes canonical rejection categories (status codes defined in routing-contract.md).
+message RouterRejection {
+  RouterDecision decision = 1;
+  strin
