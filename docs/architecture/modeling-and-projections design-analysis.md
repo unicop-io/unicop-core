@@ -395,6 +395,4 @@ UNICOP’s design is structurally sound and defensible.
 
 [Back to top](#unicop--internal-engineering-document)
 
-######################################################################
-# END OF DOCUMENT
-######################################################################
+
