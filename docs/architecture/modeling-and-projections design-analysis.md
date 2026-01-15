@@ -1,13 +1,12 @@
 
-#
 ######################################################################
-UNICOP — INTERNAL ENGINEERING DOCUMENT
-CANONICAL CORE MODELING AND PROJECTION-BASED DESIGN
-INDUSTRY ANALYSIS, CONVERGENCE, AND ENGINEERING INVARIANTS
+# UNICOP — INTERNAL ENGINEERING DOCUMENT
+# CANONICAL CORE MODELING AND PROJECTION-BASED DESIGN
+# INDUSTRY ANALYSIS, CONVERGENCE, AND ENGINEERING INVARIANTS
 ######################################################################
 
 ######################################################################
-NAVIGATION
+## NAVIGATION
 ######################################################################
 
 - [Top](#unicop--internal-engineering-document)
@@ -49,7 +48,7 @@ NAVIGATION
 - [11. Engineering Implications and Validation for UNICOP](#11-engineering-implications-and-validation-for-unicop)
 
 ######################################################################
-1. Purpose and Positioning
+# 1. Purpose and Positioning
 ######################################################################
 
 This document is an internal engineering analysis and governance artifact.
@@ -74,11 +73,11 @@ It is not:
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-2. Conceptual Foundations
+# 2. Conceptual Foundations
 ######################################################################
 
 ######################################################################
-2.1 Canonical Core Modeling
+## 2.1 Canonical Core Modeling
 ######################################################################
 
 Canonical core modeling refers to the use of a **small, stable set of abstract
@@ -96,7 +95,7 @@ across heterogeneous providers and execution environments.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-2.2 Projection-Based Representation
+## 2.2 Projection-Based Representation
 ######################################################################
 
 Projection-based representation derives concrete, system-specific artifacts
@@ -113,7 +112,7 @@ Projections are boundary artifacts. Authority remains with canonical intent.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-2.3 Specification / Digital Twin Modeling (Contrast)
+## 2.3 Specification / Digital Twin Modeling (Contrast)
 ######################################################################
 
 Specification-based or digital twin modeling treats each real-world resource
@@ -131,7 +130,7 @@ not for abstraction or intent-driven control.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3. Observed Modeling Principles from ATUM (Detailed Analysis)
+# 3. Observed Modeling Principles from ATUM (Detailed Analysis)
 ######################################################################
 
 Apptio’s ATUM model publicly describes a layered structure:
@@ -145,7 +144,7 @@ generalized beyond cost management.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.1 Layer Separation: Data, Canonical Structure, Derivation
+## 3.1 Layer Separation: Data, Canonical Structure, Derivation
 ######################################################################
 
 ATUM strictly separates raw input data, canonical structure, and derivation logic.
@@ -155,7 +154,7 @@ independent evolution.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.2 Canonical Taxonomy as the System Center of Gravity
+## 3.2 Canonical Taxonomy as the System Center of Gravity
 ######################################################################
 
 ATUM positions taxonomy as the shared vocabulary aligning finance, operations,
@@ -164,7 +163,7 @@ and business interpretation. All derivation flows through this structure.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.3 Deterministic Mapping and Classification
+## 3.3 Deterministic Mapping and Classification
 ######################################################################
 
 ATUM explicitly references automated categorization via mapping rules.
@@ -173,7 +172,7 @@ Determinism enables repeatability, auditability, and inspectability.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.4 Explicit Routing Between Conceptual Layers
+## 3.4 Explicit Routing Between Conceptual Layers
 ######################################################################
 
 ATUM uses predefined routing/allocation rules to connect layers.
@@ -182,7 +181,7 @@ Inter-layer relationships are explicit artifacts, not implicit coupling.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.5 Controlled Extension Without Core Mutation
+## 3.5 Controlled Extension Without Core Mutation
 ######################################################################
 
 ATUM allows customization while preserving a stable baseline taxonomy.
@@ -191,7 +190,7 @@ Extensions do not redefine the core structure.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.6 Context-Aware Derivation Without Ontology Explosion
+## 3.6 Context-Aware Derivation Without Ontology Explosion
 ######################################################################
 
 Operational context influences derivation without promoting all operational
@@ -200,7 +199,7 @@ artifacts to core concepts.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-3.7 Stable Canonical Structure Enabling Comparison and Reasoning
+## 3.7 Stable Canonical Structure Enabling Comparison and Reasoning
 ######################################################################
 
 ATUM enables benchmarking and comparison by enforcing stable canonical
@@ -209,11 +208,11 @@ definitions and repeatable derivation.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-4. Application of These Principles in UNICOP
+# 4. Application of These Principles in UNICOP
 ######################################################################
 
 ######################################################################
-4.1 Bounded Core Model Set (Design Target)
+## 4.1 Bounded Core Model Set (Design Target)
 ######################################################################
 
 UNICOP targets a **bounded core model set (~25 models)**.
@@ -228,7 +227,7 @@ This target is a design assumption, not an externally validated fact.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-4.2 Provider Resources as Derived Projections
+## 4.2 Provider Resources as Derived Projections
 ######################################################################
 
 Provider-specific resources are derived projections:
@@ -239,7 +238,7 @@ Provider-specific resources are derived projections:
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-4.3 Coverage Characteristics (Hypothesis)
+## 4.3 Coverage Characteristics (Hypothesis)
 ######################################################################
 
 Hypothesis:
@@ -251,13 +250,13 @@ This requires formal measurement.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-5. UNICOP Engineering Invariants
+# 5. UNICOP Engineering Invariants
 ######################################################################
 
 The following are **normative invariants** for UNICOP engineering.
 
 ######################################################################
-5.1 Projection Purity and Idempotency
+## 5.1 Projection Purity and Idempotency
 ######################################################################
 
 A projection MUST be:
@@ -270,7 +269,7 @@ Given the same canonical intent and provider context, output MUST be identical.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-5.2 Core vs Projection Change Control
+## 5.2 Core vs Projection Change Control
 ######################################################################
 
 - Core model changes are **breaking schema changes**
@@ -281,7 +280,7 @@ Core stability is paramount.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-5.3 Deterministic Mapping Precedence
+## 5.3 Deterministic Mapping Precedence
 ######################################################################
 
 If multiple mapping rules apply:
@@ -291,7 +290,7 @@ If multiple mapping rules apply:
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-5.4 Metadata Passthrough (Escape Hatch)
+## 5.4 Metadata Passthrough (Escape Hatch)
 ######################################################################
 
 Core models MAY carry opaque metadata blobs:
@@ -304,11 +303,11 @@ This preserves core minimality while enabling full provider feature coverage.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-6. Visual Models
+# 6. Visual Models
 ######################################################################
 
 ######################################################################
-6.1 Conceptual Layering Model
+## 6.1 Conceptual Layering Model
 ######################################################################
 
 ~~~plantuml
@@ -330,7 +329,7 @@ Core --> "Projection Logic"
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-6.2 C4 Context View
+## 6.2 C4 Context View
 ######################################################################
 
 ~~~plantuml
@@ -347,7 +346,7 @@ Engineer --> "UNICOP Control Plane"
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-6.3 C4 Container View
+## 6.3 C4 Container View
 ######################################################################
 
 ~~~plantuml
@@ -364,7 +363,7 @@ rectangle "Provider Adapters"
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-6.4 UML Sequence: Intent to Provider Realization
+## 6.4 UML Sequence: Intent to Provider Realization
 ######################################################################
 
 ~~~plantuml
@@ -383,11 +382,11 @@ Projection -> Provider
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-7. Industry Convergence Analysis (Evidence-Based)
+# 7. Industry Convergence Analysis (Evidence-Based)
 ######################################################################
 
 ######################################################################
-7.1 Apptio TBM / ATUM
+## 7.1 Apptio TBM / ATUM
 ######################################################################
 
 ATUM demonstrates canonical taxonomy, deterministic derivation, and controlled
@@ -396,7 +395,7 @@ extension.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-7.2 AWS Internal Resource Modeling Surface
+## 7.2 AWS Internal Resource Modeling Surface
 ######################################################################
 
 AWS uses machine-readable resource schemas and a registry-based meta-model to
@@ -405,7 +404,7 @@ enable generic tooling.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-7.3 ServiceNow CSDM / CMDB
+## 7.3 ServiceNow CSDM / CMDB
 ######################################################################
 
 CSDM defines a prescriptive canonical service model supporting derived views.
@@ -413,7 +412,7 @@ CSDM defines a prescriptive canonical service model supporting derived views.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-7.4 SAP LeanIX Meta-Model
+## 7.4 SAP LeanIX Meta-Model
 ######################################################################
 
 LeanIX uses a bounded meta-model governing fact sheet relationships.
@@ -421,7 +420,7 @@ LeanIX uses a bounded meta-model governing fact sheet relationships.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-8. Recognized Industry Analogy: Kubernetes CRDs
+# 8. Recognized Industry Analogy: Kubernetes CRDs
 ######################################################################
 
 UNICOP core models are analogous to Kubernetes CRDs:
@@ -434,7 +433,7 @@ This is a mental model, not an equivalence claim.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-9. Contrast Case: FNT Software Digital Twin Approach
+# 9. Contrast Case: FNT Software Digital Twin Approach
 ######################################################################
 
 FNT models infrastructure as a high-fidelity digital twin.
@@ -443,7 +442,7 @@ This contrasts with UNICOP’s intent-driven approach.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-10. Causal Traceability and Audit Spine
+# 10. Causal Traceability and Audit Spine
 ######################################################################
 
 UNICOP employs an authoritative Kafka-based event spine.
@@ -458,7 +457,7 @@ This enables auditability, compliance, and debugging.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-11. Engineering Implications and Validation for UNICOP
+# 11. Engineering Implications and Validation for UNICOP
 ######################################################################
 
 The analysis validates:
@@ -471,5 +470,5 @@ UNICOP’s design is structurally sound and defensible.
 [Back to top](#unicop--internal-engineering-document)
 
 ######################################################################
-END OF DOCUMENT
+# END OF DOCUMENT
 ######################################################################
