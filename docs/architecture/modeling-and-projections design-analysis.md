@@ -1,7 +1,7 @@
 ## CANONICAL CORE MODELING AND PROJECTION-BASED DESIGN
 ### INDUSTRY ANALYSIS, CONVERGENCE, AND ENGINEERING INVARIANTS
 
-## NAVIGATION
+### NAVIGATION
 
 - [Top](#unicop--internal-engineering-document)
 - [1. Purpose and Positioning](#1-purpose-and-positioning)
