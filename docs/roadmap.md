@@ -5,7 +5,7 @@
 This document is **public-facing**.  
 It describes **direction and sequencing**, not internal mechanics or R&D detail.
 
----
+-----
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ It describes **direction and sequencing**, not internal mechanics or R&D detail.
 - [Relationship to Internal Documents](#relationship-to-internal-documents)
 - [Summary](#summary)
 
----
+-----
 
 ## Purpose
 
@@ -30,6 +30,7 @@ The purpose of this roadmap is to communicate:
 - **why the order matters**
 
 It is designed for:
+
 - senior engineers
 - architects
 - platform and SRE leaders
@@ -39,7 +40,7 @@ It is a statement of **engineering intent and prioritization**.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Guiding Principles
 
@@ -55,7 +56,7 @@ Anything that violates these principles is deferred.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Current Focus (Now)
 
@@ -71,7 +72,7 @@ Active work is focused on stabilizing:
 
 This establishes **relational truth** as the system’s foundation.
 
----
+-----
 
 ### 2. Event Spine and Execution Wiring
 
@@ -84,7 +85,7 @@ In parallel:
 
 The goal is **honest, observable state transitions**, not speed.
 
----
+-----
 
 ### 3. Reconciliation (MVP)
 
@@ -99,7 +100,7 @@ This is the minimum viable **control loop**, not a full self-healing engine.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Next Milestones
 
@@ -115,7 +116,7 @@ Once the core loop is stable:
 
 Security is treated as **foundational**, not an add-on.
 
----
+-----
 
 ### 5. Federation-Ready Architecture
 
@@ -128,7 +129,7 @@ Without changing core logic:
 
 Federation is a **deployment concern**, not a rewrite.
 
----
+-----
 
 ### 6. Observability and Auditability
 
@@ -142,16 +143,47 @@ Before any user-facing UX expansion:
 
 If operators cannot understand failure, the system is incomplete.
 
+-----
+
+### 7. AI-Assisted Operational Interface (AIAOI)
+
+Once the authority layer, audit spine, observability plane, and governance
+primitives are stable, UNICOP gains a natural-language operational interface.
+
+AIAOI is explicitly sequenced last because it depends on everything above it:
+
+- authoritative relational state (NetBox)
+- deterministic reconciliation semantics
+- immutable audit spine (Kafka)
+- structured telemetry and observability
+- explicit governance and ownership
+
+Without those foundations, an AI layer amplifies operational chaos instead
+of reducing it.
+
+AIAOI provides:
+
+- natural language resource acquisition and self-service
+- topology-aware and telemetry-aware operational reasoning
+- structured incident assistance and remediation proposals
+- governance-integrated approval workflows
+- operational memory across closed incidents
+
+AIAOI is a bounded interaction layer. It never becomes the authority.  
+UNICOP remains the authority.
+
+The AIAOI architecture RFC is published separately:  
+→ [unicop-aiaoi](https://github.com/unicop-io/unicop-aiaoi)
+
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Deferred (Intentional Non-Goals for Now)
 
 The following are **explicitly postponed**:
 
 - a unified end-user UI
-- self-service catalogs
 - graphical workflow builders
 - multi-deployment distributions
 - SaaS / hosted offering
@@ -161,7 +193,7 @@ Deferral is intentional to avoid architectural debt.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## What This Roadmap Is Not
 
@@ -179,7 +211,7 @@ This document exists to show **discipline and sequencing**.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Relationship to Internal Documents
 
@@ -196,7 +228,7 @@ Those documents exist, but are **not published at this stage**.
 
 [↑ Back to top](#unicop--roadmap-public--lightweight)
 
----
+-----
 
 ## Summary
 
